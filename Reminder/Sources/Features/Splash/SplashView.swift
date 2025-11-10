@@ -9,8 +9,18 @@ import Foundation
 import UIKit
 
 class SplashView: UIView {
-    init() {
-        super.init(frame: .zero)
+    private let logoImageView: UIImageView = {
+        let image = UIImageView()
+        
+        image.image = UIImage(named: "Logo")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
     }
     
@@ -19,14 +29,19 @@ class SplashView: UIView {
     }
     
     private func setupUI() {
-        self.backgroundColor = .blue
+        self.backgroundColor = Colors.primaryRedBase
+        
+        addSubview(logoImageView)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
-        
-        
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -Metrics.medium)
+            
+        ])
     }
 }
 
