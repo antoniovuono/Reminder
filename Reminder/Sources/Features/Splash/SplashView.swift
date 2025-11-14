@@ -29,10 +29,7 @@ class SplashView: UIView {
     }
     
     private func setupUI() {
-        self.backgroundColor = Colors.primaryRedBase
-        
         addSubview(logoImageView)
-        
         setupConstraints()
     }
     
