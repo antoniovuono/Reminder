@@ -6,10 +6,21 @@
 //
 
 import Foundation
+import Firebase
 
 class LoginBottomSheetViewModel {
+    var succesResult: (() -> Void)?
+    
+    
     func doAuth(email: String, password: String) {
-        print(email)
-        // chamar a camada de serviço (backend).
+        Auth.auth().signIn(withEmail: email, password: password) {
+            [weak self] authResult, error in
+            
+            if let error = error {
+                print(authResult, "Erro na autenticação!")
+            } else {
+                self?.succesResult?()
+            }
+        }
     }
 }

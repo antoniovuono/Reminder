@@ -18,6 +18,7 @@ class LoginBottomSheetViewController: UIViewController {
         loginView.delegate = self
         setupUI()
         setupGesture()
+        bindViewModel()
     }
     
     private func setupUI() {
@@ -35,6 +36,15 @@ class LoginBottomSheetViewController: UIViewController {
         ])
         
         let heightConstraint = loginView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    private func bindViewModel() {
+        viewModel.succesResult = { [weak self] in
+           let viewController = UIViewController()
+           viewController.view.backgroundColor = .red
+            
+           self?.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     private func setupGesture() {
